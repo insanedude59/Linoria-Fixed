@@ -474,8 +474,11 @@ do
         end;
 
         function ColorPicker:OnChanged(Func)
-            ColorPicker.Changed = Func;
-            Func(ColorPicker.Value);
+            
+            pcall(function()
+                ColorPicker.Changed = Func;
+                Func(ColorPicker.Value);
+            end)
         end;
 
         function ColorPicker:Show()
@@ -1080,8 +1083,11 @@ do
         });
 
         function Textbox:OnChanged(Func)
-            Textbox.Changed = Func;
-            Func(Textbox.Value);
+            
+            pcall(function()
+                Textbox.Changed = Func;
+                Func(Textbox.Value);
+            end)
         end;
 
         Groupbox:AddBlank(5);
@@ -1169,8 +1175,10 @@ do
         end;
 
         function Toggle:OnChanged(Func)
-            Toggle.Changed = Func;
-            Func(Toggle.Value);
+            pcall(function()
+                Toggle.Changed = Func;
+                Func(Toggle.Value);
+            end)
         end;
 
         function Toggle:SetValue(Bool)
@@ -1317,8 +1325,10 @@ do
         end;
 
         function Slider:OnChanged(Func)
-            Slider.Changed = Func;
-            Func(Slider.Value);
+            pcall(function()
+                Slider.Changed = Func;
+                Func(Slider.Value);
+            end)
         end;
 
         local function Round(Value)
@@ -1687,9 +1697,11 @@ do
             DropdownArrow.Rotation = 0;
         end;
 
-        function Dropdown:OnChanged(Func)
-            Dropdown.Changed = Func;
-            Func(Dropdown.Value);
+        function Dropdown:OnChanged(callback)
+            pcall(function()
+                Dropdown.Changed = callback;
+                callback(Dropdown.Value);
+            end)
         end;
 
         function Dropdown:SetValue(Val)
